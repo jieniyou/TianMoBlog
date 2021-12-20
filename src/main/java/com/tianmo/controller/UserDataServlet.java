@@ -20,7 +20,7 @@ public class UserDataServlet extends BaseServlet{
         UserQuery userQuery = parseParameter(UserQuery.class);
         //接收分页的数据
         Page page =parseParameter(Page.class);
-        Integer count = userService.count();
+        Integer count = userService.count(userQuery);
         //查询数据 从业务层获取数据
         List<User> list=userService.queryList(userQuery,page);
         //作出响应 将业务层返回的数据，封装成JSON的字符出

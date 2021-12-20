@@ -22,5 +22,5 @@ public interface UserDao {
 
     boolean delete(int[] ids);
 
-    Integer count();
+    Integer count(UserQuery userQuery);
 }

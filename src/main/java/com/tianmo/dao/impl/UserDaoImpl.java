@@ -1,11 +1,11 @@
 package com.tianmo.dao.impl;
 
-import com.xiaomin.bean.Page;
-import com.xiaomin.bean.User;
-import com.xiaomin.dao.UserDao;
-import com.xiaomin.query.UserQuery;
-import com.xiaomin.util.JdbcUtil;
-import com.xiaomin.util.StrUtil;
+import com.tianmo.bean.Page;
+import com.tianmo.bean.User;
+import com.tianmo.dao.UserDao;
+import com.tianmo.query.UserQuery;
+import com.tianmo.util.JdbcUtil;
+import com.tianmo.util.StrUtil;
 
 import java.util.List;
 
@@ -53,20 +53,16 @@ public class UserDaoImpl implements UserDao {
     }
 
     @Override
-    public Integer count() {
+    public Integer count(UserQuery userQuery) {
         String sql="select count(*) from user where delete_status=0";
         if (userQuery==null){
             return jdbcUtil.executeCount(sql);
         }
-        //如果查询条件查询为空
-        if (userQuery==null){
-            stringBuffer.append(" limit ?,?");
-            return jdbcUtil.executeQuery(stringBuffer.toString(),User.class,page.getStartRow(),page.getLimit());
-        }
         //查询条件不为空
         if (StrUtil.isNotEmpty(userQuery.getAccount())){
-            sql+=" where account ='"+userQuery.getAccount()+"'";
+            sql+=" and account ='"+userQuery.getAccount()+"'";
         }
+        //角色搜索框条件不为空
         if (userQuery.getRoleID()!=null&&userQuery.getRoleID()>0){
             sql+=" and role_id="+userQuery.getRoleID();
         }//判断哪些情况需要添加Where，那些情况添加and

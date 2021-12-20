@@ -1,6 +1,6 @@
 package com.tianmo.bean;
 
-import com.xiaomin.annotation.FieldName;
+import com.tianmo.annotation.FieldName;
 import lombok.Data;
 
 /**

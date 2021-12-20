@@ -1,11 +1,11 @@
 package com.tianmo.service.impl;
 
-import com.xiaomin.bean.Page;
-import com.xiaomin.bean.User;
-import com.xiaomin.dao.UserDao;
-import com.xiaomin.dao.impl.UserDaoImpl;
-import com.xiaomin.query.UserQuery;
-import com.xiaomin.service.UserService;
+import com.tianmo.bean.Page;
+import com.tianmo.bean.User;
+import com.tianmo.dao.UserDao;
+import com.tianmo.dao.impl.UserDaoImpl;
+import com.tianmo.query.UserQuery;
+import com.tianmo.service.UserService;
 
 import java.util.List;
 
@@ -49,8 +49,8 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public Integer count() {
-        return userDao.count();
+    public Integer count(UserQuery userQuery) {
+        return userDao.count(userQuery);
     }
 
     /**

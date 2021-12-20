@@ -35,5 +35,5 @@ public interface UserService {
     //可以尝试一下
     //String resetPassword(int id);
 
-    Integer count();
+    Integer count(UserQuery userQuery);
 }
