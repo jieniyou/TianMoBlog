@@ -1,7 +1,7 @@
 package com.tianmo.util;
 
-import com.xiaomin.annotation.FieldName;
-import com.xiaomin.bean.User;
+import com.tianmo.annotation.FieldName;
+import com.tianmo.bean.User;
 
 import java.io.IOException;
 import java.io.InputStream;
