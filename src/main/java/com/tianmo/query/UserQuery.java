@@ -7,6 +7,6 @@ public class UserQuery {
 
     private String account;
 
-    private Integer roleID;
+    private Integer identify;
 
 }

@@ -20,17 +20,17 @@ public class UserDaoImpl implements UserDao {
     @Override
     public boolean insert(User user) {
         //SQL
-        String sql="insert into user(account,password,role_id) value(?,?,?)";
+        String sql="insert into user(account,password,identify) value(?,?,?)";
         //执行SQL
-        boolean execute = jdbcUtil.execute(sql, user.getAccount(), user.getPassword(), user.getRoleId());
+        boolean execute = jdbcUtil.execute(sql, user.getAccount(), user.getPassword(), user.getIdentify());
         //根据结果作响应
         return execute;
     }
 
     @Override
     public boolean update(User user) {
-        String sql="update user set account=?,password=?,role_id=? where id=?";
-        boolean execute = jdbcUtil.execute(sql, user.getAccount(), user.getPassword(), user.getRoleId(),user.getId());
+        String sql="update user set account=?,password=?,identify=? where id=?";
+        boolean execute = jdbcUtil.execute(sql, user.getAccount(), user.getPassword(), user.getIdentify(),user.getId());
         return execute;
     }
 
@@ -63,8 +63,8 @@ public class UserDaoImpl implements UserDao {
             sql+=" and account ='"+userQuery.getAccount()+"'";
         }
         //角色搜索框条件不为空
-        if (userQuery.getRoleID()!=null&&userQuery.getRoleID()>0){
-            sql+=" and role_id="+userQuery.getRoleID();
+        if (userQuery.getIdentify()!=null&&userQuery.getIdentify()>0){
+            sql+=" and identify="+userQuery.getIdentify();
         }//判断哪些情况需要添加Where，那些情况添加and
 
         Integer integers=jdbcUtil.executeCount(sql);
@@ -95,10 +95,10 @@ public class UserDaoImpl implements UserDao {
         if (StrUtil.isNotEmpty(userQuery.getAccount())){
             stringBuffer.append(" where account ='"+userQuery.getAccount()+"'");
         }
-        if (userQuery.getRoleID()!=null&&userQuery.getRoleID()>0){
-            stringBuffer.append(" and role_id="+userQuery.getRoleID());
+        if (userQuery.getIdentify()!=null&&userQuery.getIdentify()>0){
+            stringBuffer.append(" and identify="+userQuery.getIdentify());
         }//判断哪些情况需要添加Where，那些情况添加and
-        stringBuffer.append(" limit ?,?");//select *from user where account ='zhangsan'and role_id=1 limit 0,10
+        stringBuffer.append(" limit ?,?");
         return jdbcUtil.executeQuery(stringBuffer.toString(),User.class,page.getStartRow(),page.getLimit());
     }
 }

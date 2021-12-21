@@ -37,7 +37,7 @@ public class LoginServlet extends BaseServlet {
             responseJSON(R.no("账号或密码错误"));
         }else{
             //登陆成功，存储一个当前用户信息到session作用域
-            session.setAttribute("user",user);
+            session.setAttribute("user",user.getAccount());
             //构建响应对象
             responseJSON(R.ok("登录成功"));
         }

@@ -11,7 +11,7 @@ public interface UserService {
 
     /**
      * 用来查询用户的数据
-     * 分也与条件查询
+     * 分页与条件查询
      * @return
      */
     List<User> queryList(UserQuery userQuery, Page page);

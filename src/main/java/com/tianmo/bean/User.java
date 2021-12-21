@@ -31,6 +31,5 @@ public class User {
     /**
      * 角色ID
      */
-    @FieldName("role_id")
-    private Integer roleId;
+    private Integer identify;
 }
