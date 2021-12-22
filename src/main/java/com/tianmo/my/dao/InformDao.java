@@ -28,12 +28,14 @@ public class InformDao extends HttpServlet {
 
         String author=req.getParameter("author");
         String inform = req.getParameter("inform");
+        String contentInfor = req.getParameter("contentInfor");
         String create_time = req.getParameter("create_time");
         String status = req.getParameter("status");
 
         Inform inform1=new Inform();
         inform1.setAuthor(author);
         inform1.setInform(inform);
+        inform1.setContentInfor(contentInfor);
         inform1.setCreateTime(create_time);
         inform1.setStatus(status);
 
@@ -44,13 +46,14 @@ public class InformDao extends HttpServlet {
 
     public void add(Inform inform) {
         connection = jdbcUtil.getConnection();
-        sql="insert into inform(author,inform,create_time,status) value(?,?,?,?)";
+        sql="insert into inform(author,inform,contentInfor,create_time,status) value(?,?,?,?,?)";
         try {
             preparedStatement=connection.prepareStatement(sql);
             preparedStatement.setString(1,inform.getAuthor());
             preparedStatement.setString(2,inform.getInform());
-            preparedStatement.setString(3,inform.getCreateTime());
-            preparedStatement.setString(4,inform.getStatus());
+            preparedStatement.setString(3,inform.getContentInfor());
+            preparedStatement.setString(4,inform.getCreateTime());
+            preparedStatement.setString(5,inform.getStatus());
 
             preparedStatement.execute();
             System.out.println("添加成功");

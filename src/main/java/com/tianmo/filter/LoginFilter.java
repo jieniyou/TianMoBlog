@@ -23,7 +23,7 @@ public class LoginFilter implements Filter {
         System.out.println(path);
         // 判断当前这个路径是否应该被放行
         for (String url : urls) {
-            if(url.equals(path)||path.startsWith("/assets/")||path.startsWith("/fly/")){
+            if(url.equals(path)||path.startsWith("/assets/")||path.startsWith("/fly/")||path.startsWith("/layui/")){
                 //放行
                 filter.doFilter(servletRequest, servletResponse);
                 return;

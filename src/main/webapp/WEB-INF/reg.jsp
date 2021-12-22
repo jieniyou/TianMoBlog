@@ -7,6 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <link href="/assets/images/favicon.ico" rel="icon">
     <title>TianMo用户注册</title>
+    <link rel="shortcut icon" href="/img/天魔1.png" type="image/x-icon">
     <link rel="stylesheet" href="/assets/libs/layui/css/layui.css"/>
     <link rel="stylesheet" href="/assets/module/admin.css?v=318">
     <!--[if lt IE 9]>

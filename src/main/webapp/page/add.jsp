@@ -14,6 +14,7 @@
 <head>
     <meta charset="utf-8">
     <title>问题或观念</title>
+    <link rel="shortcut icon" href="/img/天魔1.png" type="image/x-icon">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <meta name="keywords" content="fly,layui,前端社区">
     <meta name="description" content="Fly社区是模块化前端UI框架Layui的官网社区，致力于为web开发提供强劲动力">
@@ -25,7 +26,7 @@
 <div class="fly-header layui-bg-black">
     <div class="layui-container">
         <a class="fly-logo" href="/index">
-            <img src="/fly/res/images/logo.png" alt="layui">
+            <img src="/assets/images/天魔社区图一.png" width="10%" style="margin-top: -2%" alt="layui">
         </a>
 
         <ul class="layui-nav fly-nav-user">
@@ -90,9 +91,16 @@
                                     </div>
                                 </div>
                             </div>
+                            <div class="layui-col-md9">
+                                <label for="L_title" class="layui-form-label">标题</label>
+                                <div class="layui-input-block">
+                                    <input type="text" id="L_title" name="inform" required lay-verify="required" autocomplete="off" class="layui-input">
+                                    <!-- <input type="hidden" name="id" value="{{d.edit.id}}"> -->
+                                </div>
+                            </div>
                             <div class="layui-form-item layui-form-text">
                                 <div class="layui-input-block">
-                                    <textarea id="L_content" name="inform" required lay-verify="required" placeholder="详细描述" class="layui-textarea fly-editor" style="height: 260px;"></textarea>
+                                    <textarea id="L_content" name="contentInfor" required lay-verify="required" placeholder="详细描述" class="layui-textarea fly-editor" style="height: 260px;"></textarea>
                                 </div>
                             </div>
                             <div class="layui-form-item">

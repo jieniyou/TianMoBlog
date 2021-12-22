@@ -9,6 +9,7 @@
 <head>
   <meta charset="utf-8">
   <title>TianMo社区首页</title>
+  <link rel="shortcut icon" href="/img/天魔1.png" type="image/x-icon">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="keywords" content="fly,layui,前端社区">
   <meta name="description" content="Fly社区是模块化前端UI框架Layui的官网社区，致力于为web开发提供强劲动力">
@@ -16,33 +17,31 @@
   <link rel="stylesheet" href="/fly/res/css/global.css">
 </head>
 <body>
+<%
+  String account=request.getParameter("account");
+  String user=(String) session.getAttribute("user");
+%>
 <div class="fly-header layui-bg-black">
   <div class="layui-container">
     <a class="fly-logo" href="/index">
-      <img src="/fly/res/images/logo.png" alt="layui">
+      <img src="/assets/images/天魔社区图一.png" width="10%" style="margin-top: -2%" alt="天魔">
     </a>
-    
-    <ul class="layui-nav fly-nav-user">
 
+    <ul class="layui-nav fly-nav-user">
       <!-- 登入后的状态 -->
-      <jsp:useBean id="informDao" class="com.tianmo.my.bean.Inform"></jsp:useBean>
-      <jsp:useBean id="informQuery" class="com.tianmo.my.query.inform"></jsp:useBean>
-      <%
-        String user=(String) session.getAttribute("user");
-        Inform userinform = informQuery.getInfoByAuthor(user);
-      %>
       <li class="layui-nav-item">
         <a class="fly-nav-avatar" href="javascript:;">
           <cite class="layui-hide-xs"><%=user%></cite>
-          <i class="iconfont icon-renzheng layui-hide-xs" title="认证信息：layui 作者"></i>
+          <i class="iconfont icon-renzheng layui-hide-xs" title="认证信息：TianMo 作者"></i>
+          <%--          <i class="layui-badge fly-badge-vip layui-hide-xs">VIP3</i>--%>
           <img src="https://tva1.sinaimg.cn/crop.0.0.118.118.180/5db11ff4gw1e77d3nqrv8j203b03cweg.jpg">
         </a>
         <dl class="layui-nav-child">
-          <dd><a href="user/set.html"><i class="layui-icon">&#xe620;</i>基本设置</a></dd>
-          <dd><a href="user/message.html"><i class="iconfont icon-tongzhi" style="top: 4px;"></i>我的消息</a></dd>
-          <dd><a href="user/home.html"><i class="layui-icon" style="margin-left: 2px; font-size: 22px;">&#xe68e;</i>我的主页</a></dd>
+          <dd><a href="../user/set.jsp?account=<%=user%>"><i class="layui-icon">&#xe620;</i>基本设置</a></dd>
+          <dd><a href="../user/message.jsp?account=<%=user%>"><i class="iconfont icon-tongzhi" style="top: 4px;"></i>我的消息</a></dd>
+          <dd><a href="../user/home.jsp?account=<%=user%>"><i class="layui-icon" style="margin-left: 2px; font-size: 22px;">&#xe68e;</i>我的主页</a></dd>
           <hr style="margin: 5px 0;">
-          <dd><a href="/user/logout/" style="text-align: center;">退出</a></dd>
+          <dd><a href="/loginPage" style="text-align: center;">退出</a></dd>
         </dl>
       </li>
 
@@ -54,18 +53,14 @@
   <div class="layui-container">
     <ul class="layui-clear">
       <li class="layui-hide-xs layui-this"><a href="/index">首页</a></li>
-      <li><a href="jie/index.html">提问</a></li>
-      <li><a href="jie/index.html">分享<span class="layui-badge-dot"></span></a></li>
-      <li><a href="jie/index.html">讨论</a></li>
-      <li><a href="jie/index.html">建议</a></li>
-      <li><a href="jie/index.html">公告</a></li>
-      <li><a href="jie/index.html">动态</a></li>
+      <li><a href="index?status=提问">提问</a></li>
+      <li><a href="index?status=分享">分享<span class="layui-badge-dot"></span></a></li>
+      <li><a href="index?status=讨论">讨论</a></li>
+      <li><a href="index?status=建议">建议</a></li>
+      <li><a href="index?status=公告">公告</a></li>
+      <li><a href="index?status=动态">动态</a></li>
       <li class="layui-hide-xs layui-hide-sm layui-show-md-inline-block"><span class="fly-mid"></span></li> 
-      
-      <!-- 用户登入后显示 -->
-      <li class="layui-hide-xs layui-hide-sm layui-show-md-inline-block"><a href="user/index.html">我发表的贴</a></li> 
-      <li class="layui-hide-xs layui-hide-sm layui-show-md-inline-block"><a href="user/index.html#collection">我收藏的贴</a></li> 
-    </ul> 
+    </ul>
     
     <div class="fly-column-right layui-hide-xs"> 
       <span class="fly-search"><i class="layui-icon"></i></span> 
@@ -84,22 +79,27 @@
 
         <ul class="fly-list">
           <%
-            List<Inform> informs=new ArrayList<>();
+            String status=request.getParameter("status");
+            List<Inform> informs;
             inform inform=new inform();
-            informs=inform.execute();
-            System.out.println();
+            if(status!=null&&status.length()>0){
+              informs=inform.getInformByStatus(status);
+              System.out.println(status);
+            }else {
+              informs=inform.execute();
+            }
             for (Inform inform1:informs){
           %>
           <li>
-            <a href="user/home.html" class="fly-avatar">
+            <a href="/user/home.jsp?account=<%=inform1.getAuthor()%>" class="fly-avatar">
               <img src="../img/林敏.jpg" alt="姓名">
             </a>
             <h2>
               <a class="layui-badge"><%=inform1.getStatus()%></a>
-              <a href="jie/detail.html"><%=inform1.getInform()%></a>
+              <a href="/page/detail.jsp?account=<%=inform1.getAuthor()%>&&inform=<%=inform1.getInform()%>"><%=inform1.getInform()%></a>
             </h2>
             <div class="fly-list-info">
-              <a href="user/home.html" link>
+              <a href="/user/home.jsp?account=<%=inform1.getAuthor()%>" link>
                 <cite><%=inform1.getAuthor()%></cite>
 <%--                <i class="iconfont icon-renzheng" title="认证信息：XXX"></i>--%>
 <%--                <i class="layui-badge fly-badge-vip">VIP8</i>--%>
@@ -136,7 +136,7 @@
 <script>
 layui.cache.page = '/index';
 layui.cache.user = {
-  username: '游客'
+  username: '解你忧'
   ,uid: -1
   ,avatar: '/img/林敏.jpg'
   ,experience: 83

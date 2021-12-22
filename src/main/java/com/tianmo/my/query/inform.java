@@ -17,6 +17,59 @@ public class inform {
     Inform inform=null;
     Connection conn;
     User user=null;
+    public List<Inform> getInformByStatus(String status){
+        conn=jdbcUtil.getConnection();
+        String sql="select * from inform where status = ? ";
+        List<Inform> informs=new ArrayList<>();
+        try {
+            preparedStatement= conn.prepareStatement(sql);
+            preparedStatement.setString(1,status);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()){
+                inform=new Inform();
+                inform.setAuthor(resultSet.getString(2));
+                inform.setInform(resultSet.getString(3));
+                inform.setContentInfor(resultSet.getString(4));
+                inform.setCreateTime(resultSet.getString(5));
+                inform.setStatus(resultSet.getString(6));
+                inform.setReviewCount(resultSet.getInt(7));
+                informs.add(inform);
+            }
+            return informs;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return Collections.emptyList();
+        }
+
+
+    }
+
+    public List<Inform> getInformByAuthor(String author){
+        conn=jdbcUtil.getConnection();
+        String sql="select * from inform where author = ? ";
+        List<Inform> informs=new ArrayList<>();
+        try {
+            preparedStatement= conn.prepareStatement(sql);
+            preparedStatement.setString(1,author);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()){
+                inform=new Inform();
+                inform.setAuthor(resultSet.getString(2));
+                inform.setInform(resultSet.getString(3));
+                inform.setContentInfor(resultSet.getString(4));
+                inform.setCreateTime(resultSet.getString(5));
+                inform.setStatus(resultSet.getString(6));
+                inform.setReviewCount(resultSet.getInt(7));
+                informs.add(inform);
+            }
+            return informs;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return Collections.emptyList();
+        }
+
+    }
+
     public List<User> execute2(){
         List<User> users=new ArrayList<>();
         String sql="select avatar from user";
@@ -46,9 +99,10 @@ public class inform {
                 inform=new Inform();
                 inform.setAuthor(resultSet.getString(2));
                 inform.setInform(resultSet.getString(3));
-                inform.setCreateTime(resultSet.getString(4));
-                inform.setStatus(resultSet.getString(5));
-                inform.setReviewCount(resultSet.getInt(6));
+                inform.setContentInfor(resultSet.getString(4));
+                inform.setCreateTime(resultSet.getString(5));
+                inform.setStatus(resultSet.getString(6));
+                inform.setReviewCount(resultSet.getInt(7));
                 informs.add(inform);
             }
             return informs;
@@ -69,9 +123,10 @@ public class inform {
                 inform=new Inform();
                 inform.setAuthor(resultSet.getString(2));
                 inform.setInform(resultSet.getString(3));
-                inform.setCreateTime(resultSet.getString(4));
-                inform.setStatus(resultSet.getString(5));
-                inform.setReviewCount(resultSet.getInt(6));
+                inform.setContentInfor(resultSet.getString(4));
+                inform.setCreateTime(resultSet.getString(5));
+                inform.setStatus(resultSet.getString(6));
+                inform.setReviewCount(resultSet.getInt(7));
             }
             return inform;
         } catch (SQLException e) {

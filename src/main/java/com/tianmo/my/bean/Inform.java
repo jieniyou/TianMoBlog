@@ -24,6 +24,8 @@ public class Inform implements Serializable {
      */
     private String inform;
 
+    private String contentInfor;
+
     /**
      * 创建时间
      */
