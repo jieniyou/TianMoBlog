@@ -1,4 +1,6 @@
-<%@ page import="com.tianmo.my.bean.Inform" %><%--
+<%@ page import="com.tianmo.my.bean.Inform" %>
+<%@ page import="java.util.Date" %>
+<%@ page import="java.text.SimpleDateFormat" %><%--
   Created by IntelliJ IDEA.
   User: 解你忧
   Date: 2021/12/22
@@ -40,7 +42,6 @@
                 <a class="fly-nav-avatar" href="javascript:;">
                     <cite class="layui-hide-xs"><%=user%></cite>
                     <i class="iconfont icon-renzheng layui-hide-xs" title="认证信息：layui 作者"></i>
-                    <i class="layui-badge fly-badge-vip layui-hide-xs"><%=userinform.getVIP()%></i>
                     <img src="https://tva1.sinaimg.cn/crop.0.0.118.118.180/5db11ff4gw1e77d3nqrv8j203b03cweg.jpg">
                 </a>
                 <dl class="layui-nav-child">
@@ -65,12 +66,19 @@
                 </ul>
                 <div class="layui-form layui-tab-content" id="LAY_ucm" style="padding: 20px 0;">
                     <div class="layui-tab-item layui-show">
-                        <form action="" method="post">
+
+                        <%
+                            Date date=new Date();
+                            String now=new SimpleDateFormat("yyyy-MM-dd hh:mm:ss").format(date);
+                        %>
+                        <form action="/inform/add" method="post">
+                            <input type="hidden" name="author" value="<%=user%>">
+                            <input type="hidden" name="create_time" value="<%=now%>">
                             <div class="layui-row layui-col-space15 layui-form-item">
                                 <div class="layui-col-md3">
                                     <label class="layui-form-label">所在专栏</label>
                                     <div class="layui-input-block">
-                                        <select lay-verify="required" name="class" lay-filter="column">
+                                        <select lay-verify="required" name="status" lay-filter="column">
                                             <option></option>
                                             <option value="提问">提问</option>
                                             <option value="分享">分享</option>
@@ -81,57 +89,14 @@
                                         </select>
                                     </div>
                                 </div>
-                                <div class="layui-col-md9">
-                                    <label for="L_title" class="layui-form-label">标题</label>
-                                    <div class="layui-input-block">
-                                        <input type="text" id="L_title" name="title" required lay-verify="required" autocomplete="off" class="layui-input">
-                                        <!-- <input type="hidden" name="id" value="{{d.edit.id}}"> -->
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="layui-row layui-col-space15 layui-form-item layui-hide" id="LAY_quiz">
-                                <div class="layui-col-md3">
-                                    <label class="layui-form-label">所属产品</label>
-                                    <div class="layui-input-block">
-                                        <select name="project">
-                                            <option></option>
-                                            <option value="layui">layui</option>
-                                            <option value="独立版layer">独立版layer</option>
-                                            <option value="独立版layDate">独立版layDate</option>
-                                            <option value="LayIM">LayIM</option>
-                                            <option value="Fly社区模板">Fly社区模板</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="layui-col-md3">
-                                    <label class="layui-form-label" for="L_version">版本号</label>
-                                    <div class="layui-input-block">
-                                        <input type="text" id="L_version" value="" name="version" autocomplete="off" class="layui-input">
-                                    </div>
-                                </div>
-                                <div class="layui-col-md6">
-                                    <label class="layui-form-label" for="L_browser">浏览器</label>
-                                    <div class="layui-input-block">
-                                        <input type="text" id="L_browser"  value="" name="browser" placeholder="浏览器名称及版本，如：IE 11" autocomplete="off" class="layui-input">
-                                    </div>
-                                </div>
                             </div>
                             <div class="layui-form-item layui-form-text">
                                 <div class="layui-input-block">
-                                    <textarea id="L_content" name="content" required lay-verify="required" placeholder="详细描述" class="layui-textarea fly-editor" style="height: 260px;"></textarea>
+                                    <textarea id="L_content" name="inform" required lay-verify="required" placeholder="详细描述" class="layui-textarea fly-editor" style="height: 260px;"></textarea>
                                 </div>
                             </div>
                             <div class="layui-form-item">
-                                <label for="L_vercode" class="layui-form-label">人类验证</label>
-                                <div class="layui-input-inline">
-                                    <input type="text" id="L_vercode" name="vercode" required lay-verify="required" placeholder="请回答后面的问题" autocomplete="off" class="layui-input">
-                                </div>
-                                <div class="layui-form-mid">
-                                    <span style="color: #c00;">1+1=?</span>
-                                </div>
-                            </div>
-                            <div class="layui-form-item">
-                                <button class="layui-btn" lay-filter="*" lay-submit>立即发布</button>
+                                <input type="submit"  class="layui-btn" lay-filter="*" value="立即发布">
                             </div>
                         </form>
                     </div>

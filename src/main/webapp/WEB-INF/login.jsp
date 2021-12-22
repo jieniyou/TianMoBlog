@@ -6,7 +6,7 @@
     <meta charset="utf-8"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <link href="/assets/images/favicon.ico" rel="icon">
+    <link href="/img/天魔1.png" rel="icon">
     <title>TianMo用户登录</title>
     <link rel="stylesheet" href="/assets/libs/layui/css/layui.css"/>
     <link rel="stylesheet" href="/assets/module/admin.css?v=318">

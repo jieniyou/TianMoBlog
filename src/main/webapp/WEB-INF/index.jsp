@@ -35,7 +35,6 @@
         <a class="fly-nav-avatar" href="javascript:;">
           <cite class="layui-hide-xs"><%=user%></cite>
           <i class="iconfont icon-renzheng layui-hide-xs" title="认证信息：layui 作者"></i>
-          <i class="layui-badge fly-badge-vip layui-hide-xs"><%=userinform.getVIP()%></i>
           <img src="https://tva1.sinaimg.cn/crop.0.0.118.118.180/5db11ff4gw1e77d3nqrv8j203b03cweg.jpg">
         </a>
         <dl class="layui-nav-child">
@@ -93,7 +92,7 @@
           %>
           <li>
             <a href="user/home.html" class="fly-avatar">
-              <img src="../avatar/林敏.jpg" alt="姓名">
+              <img src="../img/林敏.jpg" alt="姓名">
             </a>
             <h2>
               <a class="layui-badge"><%=inform1.getStatus()%></a>
@@ -121,9 +120,7 @@
           %>
         </ul>
         <div style="text-align: center">
-          <div class="laypage-main">
-            <a href="jie/index.html" class="laypage-next">更多求解</a>
-          </div>
+          <div class="laypage-main"><span class="laypage-curr">1</span><a href="/jie/page/2/">2</a><a href="/jie/page/3/">3</a><a href="/jie/page/4/">4</a><a href="/jie/page/5/">5</a><span>…</span><a href="/jie/page/148/" class="laypage-last" title="尾页">尾页</a><a href="/jie/page/2/" class="laypage-next">下一页</a></div>
         </div>
 
       </div>
@@ -137,11 +134,11 @@
  
 <script src="/fly/res/layui/layui.js"></script>
 <script>
-layui.cache.page = '';
+layui.cache.page = '/index';
 layui.cache.user = {
   username: '游客'
   ,uid: -1
-  ,avatar: '/fly/res/images/avatar/00.jpg'
+  ,avatar: '/img/林敏.jpg'
   ,experience: 83
   ,sex: '男'
 };

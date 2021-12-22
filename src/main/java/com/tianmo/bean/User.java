@@ -32,4 +32,9 @@ public class User {
      * 角色ID
      */
     private Integer identify;
+    /**
+     * 会员
+     */
+    private String VIP;
+
 }

@@ -28,7 +28,7 @@ public class Inform implements Serializable {
      * 创建时间
      */
     @FieldName("create_time")
-    private Date createTime;
+    private String createTime;
 
     /**
      * 状态

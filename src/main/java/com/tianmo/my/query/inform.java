@@ -46,10 +46,9 @@ public class inform {
                 inform=new Inform();
                 inform.setAuthor(resultSet.getString(2));
                 inform.setInform(resultSet.getString(3));
-                inform.setCreateTime(resultSet.getDate(4));
+                inform.setCreateTime(resultSet.getString(4));
                 inform.setStatus(resultSet.getString(5));
                 inform.setReviewCount(resultSet.getInt(6));
-                inform.setVIP(resultSet.getString(7));
                 informs.add(inform);
             }
             return informs;
@@ -70,10 +69,9 @@ public class inform {
                 inform=new Inform();
                 inform.setAuthor(resultSet.getString(2));
                 inform.setInform(resultSet.getString(3));
-                inform.setCreateTime(resultSet.getDate(4));
+                inform.setCreateTime(resultSet.getString(4));
                 inform.setStatus(resultSet.getString(5));
                 inform.setReviewCount(resultSet.getInt(6));
-                inform.setVIP(resultSet.getString(7));
             }
             return inform;
         } catch (SQLException e) {
