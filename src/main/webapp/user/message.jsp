@@ -99,7 +99,7 @@
           %>
           <li data-id="123">
             <blockquote class="layui-elem-quote">
-              <a href="/jump?username=Absolutely" target="_blank"><cite><%=r.getAuthor2()%></cite></a>回答了您的求解<a target="_blank" href="/jie/8153.html/page/0/#item-1489505778669"><cite><%=r.getContentInform()%></cite></a>
+              <a href="/user/home.jsp?account=<%=user%>" target="_blank"><cite><%=r.getAuthor2()%></cite></a>回答了您的求解<a target="_blank" href="/index"><cite><%=r.getContentInform()%></cite></a>
             </blockquote>
 <%--            <p><span>1小时前</span><a href="javascript:;" class="layui-btn layui-btn-small layui-btn-danger fly-delete">删除</a></p>--%>
             <p><span><%=r.getCreate_date()%></span></p>
